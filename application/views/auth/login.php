@@ -44,9 +44,9 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            <p class="card-text"><b>ADMIN</b> email: admin@admin.com || pass: admin</p>
-                            <p class="card-text"><b>GURU</b> email: guru@guru.com || pass: guru</p>
-                            <p class="card-text"><b>MURID</b> email: murid@murid.com || pass: murid</p>
+                            <p class="card-text"><b>ADMIN</b> email: admin@admin.com || pass: 1234</p>
+                            <p class="card-text"><b>GURU</b> email: guru@guru.com || pass: 1234</p>
+                            <p class="card-text"><b>MURID</b> email: murid@murid.com || pass: 1234</p>
                         </div>
                     </div>
                 </div>
