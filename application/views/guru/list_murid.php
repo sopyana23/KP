@@ -30,6 +30,7 @@
                         <table class="table table-bordered">
                             <tr class="text-center">
                                 <th width="5%">#</th>
+                                <th>NIS</th>
                                 <th width="30%">Nama Murid</th>
                                 <th width="30%">Email</th>
                                 <th width="20%">Kelas</th>
@@ -39,13 +40,16 @@
                                 <tr>
                                     <td><?= $i ?></td>
                                     <td>
+                                        <p>12345678</p>
+                                    </td>
+                                    <td>
                                         <p>Febrian Fauzi</p>
                                     </td>
                                     <td>
                                         <p>febrian@example.com</p>
                                     </td>
                                     <td>
-                                        <p>IF-5</p>
+                                        <p>10</p>
                                     </td>
                                     <td class="text-center">
                                         <a href="" class="btn btn-info btn-sm" title="Edit"><i class="fas fa-pen"></i></a>

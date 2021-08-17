@@ -12,9 +12,9 @@
                         <div class="card-body">
                             <form action="<?= base_url(); ?>auth/registration" method="POST">
                                 <div class="form-group">
-                                    <label for="name">Nama Lengkap</label>
-                                    <input id="name" type="text" class="form-control" name="name" value="<?= set_value('name'); ?>">
-                                    <?php echo form_error('name', '<small class="text-danger">', '</small>'); ?>
+                                    <label for="name">NIS</label>
+                                    <input id="name" type="text" class="form-control" name="nis" value="<?= set_value('nis'); ?>">
+                                    <?php echo form_error('nis', '<small class="text-danger">', '</small>'); ?>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>

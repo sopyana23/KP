@@ -13,19 +13,23 @@
                         <h5>Info Pribadi</h5>
                         <hr>
                     </div>
-                    <div class="author-box-left mr-3">
-                        <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle author-box-picture">
-                        <div class="clearfix"></div>
-                        <a href="#" class="btn btn-primary mt-3">Ganti</a>
-                    </div>
-                    <div class="col mt-3">
-                        <small>Nama :</small>
-                        <h4><?= $user['name']; ?></h4>
-                        <small>Kelas :</small>
-                        <h6>Teknik Informatika</h6>
-                        <small>Email :</small>
-                        <h6><?= $user['email']; ?></h6>
-                        <div class="w-100 d-sm-none"></div>
+                    <div class="row">
+                        <div class="author-box-left mr-3 col-md-2">
+                            <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle " width="200" height="200">
+                            <div class="clearfix"></div>
+                            <a href="#" class="btn btn-primary mt-3">Ganti</a>
+                        </div>
+                        <div class="col mt-3">
+                            <small>Nama :</small>
+                            <h4><?= $user; ?></h4>
+                            <small>NIP :</small>
+                            <h6><?= $identitas; ?></h6>
+                            <small>Kelas :</small>
+                            <h6><?= $kelas; ?></h6>
+                            <small>Email :</small>
+                            <h6><?= $email; ?></h6>
+                            <div class="w-100 d-sm-none"></div>
+                        </div>
                     </div>
                     <hr>
                     <a href="#" class="btn btn-primary float-right">Ubah Data Pribadi</a>
