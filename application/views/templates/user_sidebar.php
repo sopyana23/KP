@@ -17,7 +17,7 @@
                 <li><a class="nav-link" href="<?= base_url('guru/kegiatan'); ?>"><i class="fas fa-tasks"></i><span>Kegiatan</span></a></li>
             <?php endif ?>
             <?php if ($role_id == 'murid') : ?>
-                <li><a class="nav-link" href="<?= base_url('murid/isi_kegiatan'); ?>"><i class="fas fa-tasks"></i> <span>Isi Kegiatan</span></a></li>
+                <li><a class="nav-link" href="<?= base_url('murid/absensi'); ?>"><i class="fas fa-tasks"></i> <span>Absensi</span></a></li>
             <?php endif ?>
             <?php if ($role_id != 'admin') : ?>
                 <li><a class="nav-link" href="<?= base_url($role_id . '/profile'); ?>"><i class="far fa-user"></i> <span>Profil</span></a></li>

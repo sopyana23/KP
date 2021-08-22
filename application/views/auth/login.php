@@ -42,13 +42,6 @@
                     <div class="mt-5 text-muted text-center">
                         Belum Punya Akun? <a href="<?= base_url(); ?>auth/registration">Buat Baru</a>
                     </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="card-text"><b>ADMIN</b> email: admin@admin.com || password: 1234</p>
-                            <p class="card-text"><b>GURU</b> email: guru@guru.com || password: 1234</p>
-                            <p class="card-text"><b>MURID</b> email: murid@murid.com || password: 1234</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

@@ -9,6 +9,7 @@ class Murid extends CI_Controller
         $this->load->model('Kegiatan_model');
         $this->load->model('IsiKegiatan_model');
         $this->load->model('Identitas_model');
+        $this->load->model('Absen_model');
     }
 
     public function index()
@@ -53,7 +54,28 @@ class Murid extends CI_Controller
         $this->load->view('templates/user_footer');
     }
 
-    public function isi_kegiatan()
+    public function absensi(){
+        $user = $this->Identitas_model->user();
+        $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan();
+        foreach ($user as $row) {
+            $nama = $row->nama;
+            $image = $row->image;
+            $identitas = $row->nis;
+            $kelas = $row->kelas;
+        }
+        $data['kelas'] = $kelas;
+        $data['user'] = $nama;
+        $data['image'] = $image;
+        $data['identitas'] = $identitas;
+        $data['role_id'] = 'murid';
+        $data['title'] = 'Absensi Murid';
+
+        $this->load->view('templates/user_header', $data);
+        $this->load->view('templates/user_sidebar', $data);
+        $this->load->view('murid/absensi', $data);
+        $this->load->view('templates/user_footer');
+    }
+    public function isi_kegiatan($tgl)
     {
         $user = $this->Identitas_model->user();
         foreach ($user as $row) {
@@ -61,6 +83,7 @@ class Murid extends CI_Controller
             $image = $row->image;
             $identitas = $row->nis;
         }
+        $data['tgl'] = $tgl;
         $data['user'] = $nama;
         $data['image'] = $image;
         $data['identitas'] = $identitas;
@@ -68,9 +91,6 @@ class Murid extends CI_Controller
         $data['title'] = 'Isi Kegiatan Murid';
         $data['cektgl'] = $this->IsiKegiatan_model->cekTgl($identitas);
         $data['kegiatan'] = $this->Kegiatan_model->getAllKegiatan();
-        if ($this->input->post('tgl')) {
-            $data['tindakan'] = $this->IsiKegiatan_model->cekDataKegiatan();
-        }
 
         $this->load->view('templates/user_header', $data);
         $this->load->view('templates/user_sidebar', $data);
@@ -91,21 +111,28 @@ class Murid extends CI_Controller
                     $this->db->insert('isi_kegiatan', $data);
                 }
                 $this->session->set_flashdata('message', 'Disimpan.');
-                redirect('murid/isi_kegiatan');
+                redirect('murid/absensi');
             }
         } elseif ($this->input->post('button') == 'update') {
             if (!empty($_POST['Pilihan'])) {
                 foreach ($_POST['Pilihan'] as $kegiatan => $pilih) {
-                    $data = array(
-                        'tindakan' => $pilih
-                    );
+                    
                     $this->db->where('tgl', $this->input->post('tgl'));
                     $this->db->where('nis', $this->input->post('nis'));
                     $this->db->where('id_kegiatan', $kegiatan);
-                    $this->db->update('isi_kegiatan', $data);
+                    $this->db->delete('isi_kegiatan');
+
+                    $data = array(
+                        'id' => null,
+                        'tgl' => $this->input->post('tgl', true),
+                        'nis' => $this->input->post('nis', true),
+                        'id_kegiatan' => $kegiatan,
+                        'tindakan' => $pilih
+                    );
+                    $this->db->insert('isi_kegiatan', $data);
                 }
                 $this->session->set_flashdata('message', 'Diperbaharui.');
-                redirect('murid/isi_kegiatan');
+                redirect('murid/absensi');
             }
         }
     }
