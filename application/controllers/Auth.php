@@ -8,6 +8,7 @@ class Auth extends CI_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
+        $this->load->model('Identitas_model');
     }
 
     public function index()
@@ -66,16 +67,15 @@ class Auth extends CI_Controller
     {
         $data['title'] = 'User Registration';
 
-        $this->form_validation->set_rules('nis', 'NIS','required|trim|is_unique[user.identitas]', [
-            'required' => 'NIS tidak boleh kosong',
-            'is_unique' => 'NIS sudah pernah digunakan!'
+        $this->form_validation->set_rules('nis', 'NIS', 'required|trim', [
+            'required' => 'NIS tidak boleh kosong'
         ]);
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
             'required' => 'Email tidak boleh kosong',
             'valid_email' => 'Email tidak valid',
             'is_unique' => 'Email ini sudah penah digunakan!'
         ]);
-        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[4]|matches[password2]',[
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[4]|matches[password2]', [
             'required' => 'Password tidak boleh kosong',
             'min_length' => 'Password harus lebih dari 4 karakter!',
             'matches' => 'Password dan Konfirmasi Password tidak sama!'
@@ -89,21 +89,34 @@ class Auth extends CI_Controller
             $this->load->view('templates/auth_footer');
         } else {
             $nis = $this->db->get_where('siswa', ['nis' => $this->input->post('nis')])->row_array();
-            if($nis){
-                $data = [
-                    'email' => $this->input->post('email', true),
-                    'image' => 'default.jpg',
-                    'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-                    'identitas' => $this->input->post('nis', true),
-                    'role_id' => 3
-                ];
-
-                $this->db->insert('user', $data);
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat!, Akun anda telah dibuat, Silahkan Login!</div>');
+            $this->db->where('nis', $this->input->post('nis', true));
+            $query = $this->db->get('siswa')->result();
+            foreach ($query as $row) {
+                $id = $row->id;
+            }
+            $akun = $this->Identitas_model->cekAkunMurid($id);
+            foreach ($akun as $a) {
+                $password = $a->password;
+            }
+            if ($password) {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">NIS sudah digunakan</div>');
                 redirect('auth');
-            }else{
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">NIS belum terdaftar</div>');
-                redirect('auth');
+            } else {
+                if ($nis) {
+                    $data = [
+                        'email' => $this->input->post('email', true),
+                        'image' => 'default.jpg',
+                        'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                        'role_id' => 3
+                    ];
+                    $this->db->where('id', $id);
+                    $this->db->update('user', $data);
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat!, Akun anda telah dibuat, Silahkan Login!</div>');
+                    redirect('auth');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">NIS belum terdaftar</div>');
+                    redirect('auth');
+                }
             }
         }
     }
