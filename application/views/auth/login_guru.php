@@ -5,13 +5,13 @@
                 <div class="col-md-4">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h4>Login Siswa</h4>
+                            <h4>Login Guru</h4>
                         </div>
 
                         <div class="card-body">
                             <?php echo $this->session->flashdata('message'); ?>
                             <?php unset($_SESSION['message']); ?>
-                            <form method="POST" action="<?= base_url('auth'); ?>">
+                            <form method="POST" action="<?= base_url('auth/indexGuru'); ?>">
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input id="email" type="text" class="form-control" name="email" tabindex="1" value="<?php echo set_value('email'); ?>">
@@ -40,11 +40,11 @@
                         </div>
                     </div>
                     <div class="mt-3 mb-3 text-muted text-center">
-                        Belum Punya Akun? <a href="<?= base_url(); ?>auth/registration">Buat Baru</a>
+                        Belum Punya Akun? <a href="<?= base_url(); ?>auth/registrationGuru">Buat Baru</a>
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            <a href="<?= base_url('auth/indexGuru')?>" class="btn btn-outline-primary col">Login sebagai Guru</a>
+                            <a href="<?= base_url('auth') ?>" class="btn btn-outline-primary col">Login sebagai Siswa</a>
                         </div>
                     </div>
                 </div>

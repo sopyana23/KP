@@ -32,19 +32,10 @@
                     </ul>
                 </form>
                 <ul class="navbar-nav navbar-right">
-                    <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                    <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg nav-link-user">
                             <img alt="image" src="<?= base_url('assets/img/profile/') . $image; ?>" class="rounded-circle mr-1">
                             <div class="d-sm-none d-lg-inline-block">Hallo, <?= $user; ?></div>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="<?= base_url('murid/profile'); ?>" class="dropdown-item has-icon">
-                                <i class="far fa-user"></i> Profil
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a href="<?= base_url('auth/logout'); ?>" class="dropdown-item has-icon text-danger">
-                                <i class="fas fa-sign-out-alt"></i> Keluar
-                            </a>
-                        </div>
                     </li>
                 </ul>
             </nav>

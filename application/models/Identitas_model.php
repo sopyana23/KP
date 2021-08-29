@@ -26,4 +26,12 @@ class Identitas_model extends CI_model
         $this->db->where('user.id', $id);
         return $this->db->get()->result();
     }
+    public function cekAkunGuru($id)
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->join('guru', 'user.id= guru.id');
+        $this->db->where('user.id', $id);
+        return $this->db->get()->result();
+    }
 }

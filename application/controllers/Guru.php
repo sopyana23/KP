@@ -36,7 +36,7 @@ class Guru extends CI_Controller
         foreach ($user as $row) {
             $nama = $row->nama;
             $image = $row->image;
-            $identitas = $row->identitas;
+            $identitas = $row->nip;
             $kelas = $row->kelas;
             $email = $row->email;
         }
