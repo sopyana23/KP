@@ -2,7 +2,7 @@
     <section class="section">
         <div class="container mt-5">
             <div class="row justify-content-center">
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <div class="card card-primary">
                         <div class="card-header">
                             <h4>Login Siswa</h4>
